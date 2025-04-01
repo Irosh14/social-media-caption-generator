@@ -1,0 +1,51 @@
+name: CI/CD Pipeline
+
+# Trigger the pipeline on push to main and pull requests to main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # Job to run tests
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up Node.js (if you use Node.js)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Specify your Node.js version
+
+      # Install dependencies (if any)
+      - name: Install dependencies
+        run: |
+          npm install
+
+      # Run tests (if you have any test scripts)
+      - name: Run tests
+        run: |
+          npm run test  # Replace with your test command if any
+
+  # Job for deployment
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test  # Ensure tests pass before deploying
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.1.3
+        with:
+          branch: gh-pages  # The branch where the app will be deployed
+          folder: ./build   # The folder where the build files are stored (e.g., 'dist' or 'build')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
