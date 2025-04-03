@@ -13,18 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Updated to latest
 
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18  # Adjust version if needed
+          node-version: 18  # Change if needed
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build Project
-        run: npm run build || echo "No build step found, skipping"
+        run: npm run build || echo "No build step, skipping"
 
   deploy:
     runs-on: ubuntu-latest
@@ -34,9 +34,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        uses: JamesIves/github-pages-deploy-action@v4.4.3  # ✅ Latest version
         with:
-          branch: gh-pages  # Deploy to GitHub Pages branch
-          folder: dist       # Change 'dist' if your output directory is different
+          branch: gh-pages
+          folder: dist  # Change if your output directory is different
           clean: true
           token: ${{ secrets.GITHUB_TOKEN }}
