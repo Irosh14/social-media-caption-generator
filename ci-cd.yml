@@ -13,34 +13,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Updated to v4 for better compatibility
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18  # Use an appropriate Node.js version
+          node-version: 18  # Ensure you use a compatible version
 
       - name: Install dependencies
         run: npm install
 
       - name: Run tests
-        run: npm test || echo "No tests defined, skipping..."  # Prevent failure if no tests exist
+        run: npm test || echo "No tests defined, skipping..."
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Make sure checkout action is up-to-date
 
       - name: Install dependencies
         run: npm install
 
       - name: Build project (if applicable)
-        run: npm run build || echo "No build step, skipping..."  
+        run: npm run build || echo "No build step, skipping..."
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4  # Fixed version reference
         with:
           branch: gh-pages
           folder: dist  # Change this if your output folder is different
