@@ -23,11 +23,11 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build || echo "No build step found"
+        run: npm run build || echo "No build script found"
 
       - name: Deploy 🚀
-        uses: ./github/actions/github-pages-deploy-action
+        uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
-          branch: gh-pages
-          folder: dist
+          branch: gh-pages          # Deployment branch
+          folder: dist              # The folder to deploy (dist if using build tools)
           token: ${{ secrets.GITHUB_TOKEN }}
