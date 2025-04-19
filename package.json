@@ -2,7 +2,7 @@
   "name": "social-media-caption-generator",
   "version": "1.0.0",
   "scripts": {
-    "build": "mkdir -p dist && cp -r public/* dist/"
+    "build": "mkdir -p dist && cp -r index.html style.css script.js dist/"
   },
   "license": "ISC"
 }
