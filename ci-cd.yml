@@ -11,24 +11,23 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4  # ✅ updated to latest version
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4  # ✅ updated to latest version
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install  # safer than npm ci in case package-lock is missing
+        run: npm install
 
       - name: Build
         run: npm run build || echo "No build step found"
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.4.3  # ✅ explicitly set latest v4 release
+        uses: ./github/actions/github-pages-deploy-action
         with:
-          branch: gh-pages        # Target branch to deploy to
-          folder: dist            # Change to your build folder if different
-          clean: true             # Optional: cleans old files
+          branch: gh-pages
+          folder: dist
           token: ${{ secrets.GITHUB_TOKEN }}
