@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
@@ -22,12 +22,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build || echo "No build script found"
+      - name: Build project
+        run: npm run build
 
-      - name: Deploy 🚀
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
-          branch: gh-pages          # Deployment branch
-          folder: dist              # The folder to deploy (dist if using build tools)
-          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: dist
