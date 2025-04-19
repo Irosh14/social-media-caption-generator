@@ -1,20 +1,8 @@
 {
   "name": "social-media-caption-generator",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
   "scripts": {
-  "test": "echo \"No tests specified\" && exit 0"
-},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Irosh14/social-media-caption-generator.git"
+    "build": "mkdir -p dist && cp -r public/* dist/"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Irosh14/social-media-caption-generator/issues"
-  },
-  "homepage": "https://github.com/Irosh14/social-media-caption-generator#readme"
+  "license": "ISC"
 }

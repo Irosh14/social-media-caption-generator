@@ -2,8 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -23,17 +22,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: |
-          if [ -f "package.json" ] && grep -q '"build":' package.json; then
-            npm run build || echo "No build script found"
-          else
-            echo "No build step specified in package.json"
-          fi
+      - name: Build 🔨
+        run: npm run build
+
+      - name: Check dist folder
+        run: ls -la dist
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
-          branch: gh-pages          # Deployment branch
-          folder: dist              # The folder to deploy (dist if using build tools)
+          branch: gh-pages
+          folder: dist
           token: ${{ secrets.GITHUB_TOKEN }}
